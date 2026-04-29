@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoDyno AI | Real-Time Vehicle Diagnostics & Tuning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <nav class="navbar navbar-expand-lg sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <i class="fas fa-tachometer-alt text-primary me-2 fs-3"></i>
+                <span class="text-gradient">AUTODYNO AI</span>
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <a href="vehicle-select.html" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">Vehicle Select</a>
+                <a href="registration.html" class="btn btn-outline-success rounded-pill px-4 fw-semibold">Register</a>
+                <a href="login-choice.html" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container text-center py-5 mt-5">
+        <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill fw-bold">AI-POWERED DYNO TUNING</span>
+        <h1 class="hero-title mb-4"> Real-Time OBD-II Analysis <br><span class="text-gradient"> & Intelligent Tuning</span></h1>
+        <p class="lead text-muted mx-auto mb-5" style="max-width: 700px;">
+            Collect live vehicle data from your OBD-II port, analyze performance metrics, and optimize your car with AI-driven insights.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <button class="btn btn-primary btn-lg px-5 rounded-pill shadow" onclick="window.location.href=\'dyno-tune.html\'">Start Dyno Run</button>
+            <button class="btn btn-outline-primary btn-lg px-5 rounded-pill border" onclick="window.location.href=\'vehicle-select.html\'">View Live Data</button>
+        </div>
+    </header>
+
+    <section class="container py-5">
+        <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 shadow-sm border-0">
+                    <div class="icon-box mb-3 bg-primary-subtle p-3 rounded-circle d-inline-block"><i class="fas fa-bolt text-warning"></i></div>
+                    <h3>Real-Time Data</h3>
+                    <p class="text-muted">Live OBD-II sensor readings including RPM, speed, coolant temp, fuel pressure, and more with sub-second updates.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 shadow-sm border-0">
+                    <div class="icon-box mb-3 bg-primary-subtle p-3 rounded-circle d-inline-block"><i class="fas fa-chart-line text-success"></i></div>
+                    <h3>Dyno Graphs</h3>
+                    <p class="text-muted">Complete horsepower and torque curves with AI analysis to optimize your tuning for maximum performance.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100 p-4 shadow-sm border-0">
+                    <div class="icon-box mb-3 bg-primary-subtle p-3 rounded-circle d-inline-block"><i class="fas fa-cogs text-info"></i></div>
+                    <h3>Tuning & Parts</h3>
+                    <p class="text-muted">Install virtual parts, adjust ECU parameters, and see instant performance predictions with AI recommendations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <div class="innovation-box text-center p-5 rounded-4" style="background: linear-gradient(45deg, #2D89BA, #1E40AF); color: white;">
+            <p class="text-uppercase small fw-bold ls-2">AI-Powered Analytics</p>
+            <h2 class="display-5 fw-bold mb-4 text-white">Smart Dyno Tuning</h2>
+            <p class="opacity-75 mb-5 mx-auto" style="max-width: 600px;">Our AI analyzes thousands of data points to recommend optimal tuning configurations for your specific vehicle and goals.</p>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h3 class="display-6 fw-bold text-white" id="accuracy-stat">98.2%</h3>
+                    <p class="small text-white-50">Tuning Accuracy</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="display-6 fw-bold text-white" id="time-stat">-65%</h3>
+                    <p class="small text-white-50">Tuning Time Saved</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="display-6 fw-bold text-white" id="power-stat">+22%</h3>
+                    <p class="small text-white-50">Avg Power Gain</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <h2 class="fw-bold display-6 text-center mb-5">Live OBD-II Dashboard</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="gauge-card p-4 rounded-4 text-center">
+                    <h5 class="text-muted mb-3">Engine RPM</h5>
+                    <div class="gauge-display">
+                        <div class="gauge-value" id="rpm-value">0</div>
+                        <div class="gauge-unit">RPM x1000</div>
+                    </div>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar bg-primary" id="rpm-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gauge-card p-4 rounded-4 text-center">
+                    <h5 class="text-muted mb-3">Vehicle Speed</h5>
+                    <div class="gauge-display">
+                        <div class="gauge-value" id="speed-value">0</div>
+                        <div class="gauge-unit">km/h</div>
+                    </div>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar bg-info" id="speed-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="gauge-card p-4 rounded-4 text-center">
+                    <h5 class="text-muted mb-3">Coolant Temp</h5>
+                    <div class="gauge-display">
+                        <div class="gauge-value" id="temp-value">90</div>
+                        <div class="gauge-unit">&deg;C</div>
+                    </div>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar bg-danger" id="temp-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6">
+                <div class="chart-container p-4 rounded-4">
+                    <h5 class="mb-3"><i class="fas fa-chart-area me-2 text-primary"></i>Real-Time Performance Graph</h5>
+                    <canvas id="realtimeChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chart-container p-4 rounded-4">
+                    <h5 class="mb-3"><i class="fas fa-chart-line me-2 text-success"></i>Power & Torque Curve</h5>
+                    <canvas id="dynoChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendations Panel -->
+    <section class="container py-5">
+        <div class="card bg-gradient-light border-0 rounded-4 shadow-sm overflow-hidden">
+            <div class="row g-0">
+                <div class="col-lg-4 bg-primary text-white p-5 d-flex flex-column justify-content-center">
+                    <i class="fas fa-brain fa-3x mb-3"></i>
+                    <h3 class="fw-bold mb-3">AI Tuning Advisor</h3>
+                    <p class="opacity-75">Get personalized recommendations based on your vehicle, goals, and current mods.</p>
+                    <div class="mt-3">
+                        <span class="badge bg-white text-primary mb-2">Smart Analysis</span>
+                        <span class="badge bg-white text-primary ms-2 mb-2">Cost-Effective</span>
+                        <span class="badge bg-white text-primary ms-2 mb-2">Goal-Oriented</span>
+                    </div>
+                </div>
+                <div class="col-lg-8 p-5">
+                    <h4 class="fw-bold mb-4">Your Personalized Tuning Path</h4>
+                    
+                    <!-- Goal Selection -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Select Your Goal</label>
+                        <div class="btn-group w-100" role="group">
+                            <input type="radio" class="btn-check" name="goal" id="goal-daily" value="daily" checked>
+                            <label class="btn btn-outline-primary" for="goal-daily">Daily Driver</label>
+                            
+                            <input type="radio" class="btn-check" name="goal" id="goal-track" value="track">
+                            <label class="btn btn-outline-primary" for="goal-track">Track</label>
+                            
+                            <input type="radio" class="btn-check" name="goal" id="goal-drag" value="drag">
+                            <label class="btn btn-outline-primary" for="goal-drag">Drag</label>
+                            
+                            <input type="radio" class="btn-check" name="goal" id="goal-street" value="street">
+                            <label class="btn btn-outline-primary" for="goal-street">Street Performance</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Budget Slider -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted d-flex justify-content-between">
+                            <span>Tuning Budget</span>
+                            <span class="text-primary fw-bold" id="budget-display">$5,000</span>
+                        </label>
+                        <input type="range" class="form-range" min="500" max="20000" step="500" value="5000" id="budget-slider">
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>$500</span>
+                            <span>$5k</span>
+                            <span>$10k</span>
+                            <span>$20k</span>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Recommendations Output -->
+                    <div id="ai-recommendations">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                            <span class="text-muted small">AI is analyzing your vehicle...</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary w-100 mt-3" onclick="generateAIPlan()">
+                        <i class="fas fa-magic me-2"></i>Generate AI Tuning Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="text-center py-5 bg-light rounded-4 shadow-sm border">
+            <h2 class="fw-bold mb-3 text-dark">Ready to Tune Your Vehicle?</h2>
+            <p class="text-muted mb-4">Connect your OBD-II adapter and start analyzing real-time data with AI-powered recommendations.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-primary btn-lg rounded-pill px-5" onclick="window.location.href=\'parts-catalog.html\'">Browse Parts</button>
+                <button class="btn btn-outline-primary btn-lg rounded-pill px-5 border" onclick="window.location.href=\'vehicle-select.html\'">Select Vehicle</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="ai-agent-wrapper">
+        <input type="checkbox" id="agent-check">
+        <div class="chat-popup shadow-lg">
+            <div class="p-3 bg-primary text-white fw-bold d-flex align-items-center">
+                <i class="fas fa-robot me-2"></i> Dyno AI Assistant
+            </div>
+            <div class="p-4 small text-muted scrollable-chat">
+                <div class="chat-message bot">Hello! I\'m your AI tuning assistant. Ask me about OBD-II data, dyno results, or tuning recommendations!</div>
+            </div>
+            <div class="p-2 border-top bg-light">
+                <input type="text" class="form-control border-0" id="chat-input" placeholder="Ask about tuning...">
+            </div>
+        </div>
+        <label for="agent-check" class="agent-bubble shadow">
+            <i class="fas fa-robot"></i>
+        </label>
+    </div>
+
+    <footer class="py-5 text-center text-muted border-top bg-white">
+        <p class="small">&copy; 2026 AutoDyno AI. Advanced Diagnostics & Tuning for Performance Vehicles.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="obd-simulator.js"></script>
+    <script src="ai-recommendations.js"></script>
+    <script src="main.js"></script>
+    <script src="ai-panel.js"></script>
+
+    <!-- AI Coach Advice Banner -->
+    <div id="coach-advice" class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="display: none; z-index: 1040;">
+        <div class="alert alert-primary rounded-pill px-4 py-2 shadow-lg">
+            <i class="fas fa-robot me-2"></i>
+            <span id="coach-advice-text"></span>
+        </div>
+    </div>
+
+    <footer class="py-5 text-center text-muted border-top bg-white">
+        <p class="small">&copy; 2026 AutoDyno AI. Advanced Diagnostics & Tuning for Performance Vehicles.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="obd-simulator.js"></script>
+    <script src="ai-recommendations.js"></script>
+    <script src="vehicle-manager.js"></script>
+    <script src="tuning-coach.js"></script>
+    <script src="main.js"></script>
+    <script src="ai-panel.js"></script>
+</body>
+</html>
+</html>
+
+

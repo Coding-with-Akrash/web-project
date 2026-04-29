@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Vehicle | AutoDyno AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+                <i class="fas fa-tachometer-alt text-primary me-2"></i>
+                <span class="text-gradient">AUTODYNO AI</span>
+            </a>
+            <div class="ms-auto d-flex gap-2">
+                <a href="login-choice.html" class="btn btn-outline-primary rounded-pill px-4">Login</a>
+                <a href="registration.html" class="btn btn-primary rounded-pill px-4">Add Vehicle</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container text-center py-5 mt-5">
+        <h1 class="display-4 fw-bold mb-4">Select Your Vehicle</h1>
+        <p class="lead text-muted mx-auto mb-5" style="max-width: 600px;">
+            Choose your car from our database or add a new vehicle to begin tuning.
+        </p>
+    </header>
+
+    <section class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-8 mx-auto">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text bg-white border">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" class="form-control border" placeholder="Search make, model, or year...">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex gap-2 flex-wrap">
+                    <button class="btn btn-outline-primary active">All Vehicles</button>
+                    <button class="btn btn-outline-secondary">Muscle Cars</button>
+                    <button class="btn btn-outline-secondary">Import Tuners</button>
+                    <button class="btn btn-outline-secondary">Exotics</button>
+                    <button class="btn btn-outline-secondary">European</button>
+                    <button class="btn btn-outline-secondary">Japanese</button>
+                    <button class="btn btn-outline-secondary">Domestic</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Vehicle cards will be dynamically populated -->
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="bmw-m3">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=BMW+M3" alt="BMW M3" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">BMW M3</h6>
+                    <small class="text-muted">2024 • 503 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="mustang-gt">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=MUSTANG+GT" alt="Mustang GT" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">Mustang GT</h6>
+                    <small class="text-muted">2024 • 480 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="audi-rs6">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=RS6+AVANT" alt="Audi RS6" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">Audi RS6</h6>
+                    <small class="text-muted">2024 • 591 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="amg-gt">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=AMG+GT" alt="Mercedes AMG GT" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">AMG GT</h6>
+                    <small class="text-muted">2024 • 577 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="supra">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=GR+SUPRA" alt="Toyota Supra" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">GR Supra</h6>
+                    <small class="text-muted">2024 • 382 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="gtr">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=GT-R" alt="Nissan GTR" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">Nissan GT-R</h6>
+                    <small class="text-muted">2024 • 565 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="civic-type-r">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=CIVIC+TYPE+R" alt="Honda Civic Type R" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">Civic Type R</h6>
+                    <small class="text-muted">2024 • 315 HP</small>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <div class="vehicle-card bg-white border rounded-4 p-3 text-center cursor-pointer shadow-sm" data-vehicle="corvette">
+                    <img src="https://via.placeholder.com/150x100/F8FAFC/1E40AF?text=CORVETTE" alt="Corvette" class="mb-3 rounded">
+                    <h6 class="text-dark mb-1">Corvette C8</h6>
+                    <small class="text-muted">2024 • 670 HP</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-4">
+        <div class="text-center p-5 bg-white rounded-4 border shadow-sm">
+            <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
+            <h4 class="text-dark mb-3">Vehicle Not Listed?</h4>
+            <p class="text-muted mb-4">Add your custom vehicle or import from OBD-II database</p>
+            <a href="registration.html" class="btn btn-outline-primary rounded-pill px-4">Add Custom Vehicle</a>
+        </div>
+    </section>
+
+    <footer class="py-5 text-center text-muted border-top bg-white mt-5">
+        <p class="small">&copy; 2026 AutoDyno AI. Select your ride.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Vehicle selection interactivity
+        document.querySelectorAll(".vehicle-card").forEach(card => {
+            card.addEventListener("click", function() {
+                const vehicle = this.dataset.vehicle;
+                window.location.href = "dyno-tune.html?vehicle=" + vehicle;
+            });
+        });
+    </script>
+    <script src="vehicle-manager.js"></script>
+    <script>
+        document.querySelectorAll(".vehicle-card").forEach(card => {
+            card.addEventListener("click", function() {
+                const vehicle = this.dataset.vehicle;
+                if (window.vehicleManager) window.vehicleManager.setVehicle(vehicle);
+                window.location.href = "dyno-tune.html?vehicle=" + vehicle;
+            });
+        });
+    </script>
+</body>
+</html>
+

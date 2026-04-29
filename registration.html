@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Vehicle | AutoDyno AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card auth-card p-4 p-lg-5 bg-white border-0 shadow-sm">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-car fa-3x text-primary mb-3"></i>
+                        <h3 class="fw-bold">Register Your Vehicle</h3>
+                        <p class="text-muted">Add your car to start tuning with AI</p>
+                    </div>
+                    
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Account Type</label>
+                            <select class="form-select">
+                                <option value="owner">Vehicle Owner</option>
+                                <option value="tuner">Professional Tuner</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Full Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Email</label>
+                            <input type="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Vehicle Make</label>
+                                <select class="form-select" id="vehicle-make" required>
+                                    <option value="">Select Make...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Vehicle Model</label>
+                                <select class="form-select" id="vehicle-model" required disabled>
+                                    <option value="">Select Model...</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">Vehicle Year</label>
+                                <select class="form-select" id="vehicle-year" required>
+                                    <option value="">Select Year...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold">OBD-II Protocol</label>
+                                <select class="form-select" id="obd-protocol">
+                                    <option value="ISO 15765-4 (CAN)">ISO 15765-4 (CAN)</option>
+                                    <option value="ISO 14230-4 (KWP)">ISO 14230-4 (KWP)</option>
+                                    <option value="ISO 9141-2">ISO 9141-2</option>
+                                    <option value="SAE J1850 VPW">SAE J1850 VPW</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">OBD-II Adapter (Optional)</label>
+                            <select class="form-select" id="obd-adapter">
+                                <option value="simulated">No Adapter - Simulated Data</option>
+                                <option value="elm327-bt">ELM327 Bluetooth</option>
+                                <option value="elm327-wifi">ELM327 WiFi</option>
+                                <option value="vcds">VAG-COM (VCDS)</option>
+                                <option value="torque">Torque Pro</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Password</label>
+                            <input type="password" class="form-control" placeholder="Create strong password" required>
+                        </div>
+                        
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" required>
+                            <label class="form-check-label small text-muted" for="terms">
+                                I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">
+                            <i class="fas fa-rocket me-2"></i>Start Tuning
+                        </button>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <span class="text-muted small">Already have an account? </span>
+                        <a href="owner-login.html" class="text-primary text-decoration-none">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="index.html" class="text-muted text-decoration-none">
+                <i class="fas fa-arrow-left me-2"></i>Back to Home
+            </a>
+        </div>
+    </div>
+    
+    <footer class="text-center py-4 text-muted border-top mt-5">
+        <small>&copy; 2026 AutoDyno AI. All rights reserved.</small>
+    </footer>
+
+    <script src="vehicle-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate make dropdown
+            const makeSelect = document.getElementById('vehicle-make');
+            const modelSelect = document.getElementById('vehicle-model');
+            const yearSelect = document.getElementById('vehicle-year');
+            
+            // Load makes from database
+            vehicleDatabase.makes.forEach(make => {
+                const option = document.createElement('option');
+                option.value = make.id;
+                option.textContent = make.name;
+                makeSelect.appendChild(option);
+            });
+            
+            // Make change handler
+            makeSelect.addEventListener('change', function() {
+                const makeId = this.value;
+                modelSelect.innerHTML = '<option value="">Select Model...</option>';
+                
+                if (makeId && vehicleDatabase.models[makeId]) {
+                    modelSelect.disabled = false;
+                    vehicleDatabase.models[makeId].forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model.toLowerCase().replace(/\s+/g, '-');
+                        option.textContent = model;
+                        modelSelect.appendChild(option);
+                    });
+                } else {
+                    modelSelect.disabled = true;
+                }
+            });
+            
+            // Populate years
+            vehicleDatabase.years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            });
+        });
+    </script>
+</body>
+</html>
